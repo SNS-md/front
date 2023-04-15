@@ -60,3 +60,11 @@ a{
   text-decoration: none;
   color: inherit;
 }
+
+article{
+  display: block;
+  width: calc(100% - 40px);
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 20px;
+}
