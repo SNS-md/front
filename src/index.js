@@ -12,11 +12,13 @@ root.render(
   <React.StrictMode>
     <HashRouter>
       <Header />
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/write" element={<Write />} />
-        <Route path="/detail/:id" element={<Detail />} />
-      </Routes>
+      <article>
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/write" element={<Write />} />
+          <Route path="/detail/:id" element={<Detail />} />
+        </Routes>
+      </article>
     </HashRouter>
   </React.StrictMode>
 );
