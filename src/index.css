@@ -1,0 +1,57 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+:root{
+  --main-color50: #E0F7FA;
+  --main-color100: #B2EBF2;
+  --main-color200: #80DEEA;
+  --main-color300: #4DD0E1;
+  --main-color400: #26C6DA;
+  --main-color500: #00BCD4;
+  --main-color600: #00ACC1;
+  --main-color700: #0097A7;
+  --main-color800: #00838F;
+  --main-color900: #006064;
+  --main-colorA100: #84FFFF;
+  --main-colorA200: #18FFFF;
+  --main-colorA400: #00E5FF;
+  --main-colorA700: #00B8D4;
+  --main-color: var(--main-color500);
+  --main-color-light: var(--main-color100);
+  --main-color-dark: var(--main-color700);
+  --main-color-text: var(--main-color900);
+  --main-color-text-light: var(--main-colorA100);
+  --main-color-text-dark: var(--main-colorA700);
+
+  --accent-color50: #F3E5F5;
+  --accent-color100: #E1BEE7;
+  --accent-color200: #CE93D8;
+  --accent-color300: #BA68C8;
+  --accent-color400: #AB47BC;
+  --accent-color500: #9C27B0;
+  --accent-color600: #8E24AA;
+  --accent-color700: #7B1FA2;
+  --accent-color800: #6A1B9A;
+  --accent-color900: #4A148C;
+  --accent-colorA100: #EA80FC;
+  --accent-colorA200: #E040FB;
+  --accent-colorA400: #D500F9;
+  --accent-colorA700: #AA00FF;
+  --accent-color: var(--accent-color500);
+  --accent-color-light: var(--accent-color100);
+  --accent-color-dark: var(--accent-color700);
+  --accent-color-text: var(--accent-color900);
+  --accent-color-text-light: var(--accent-colorA100);
+  --accent-color-text-dark: var(--accent-colorA700);
+  
+}
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
