@@ -61,7 +61,7 @@ a{
   color: inherit;
 }
 
-article{
+main{
   display: block;
   width: calc(100% - 40px);
   max-width: 1160px;

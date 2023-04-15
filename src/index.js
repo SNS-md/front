@@ -9,16 +9,14 @@ import {HashRouter,Route,Routes} from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <HashRouter>
-      <Header />
-      <article>
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/write" element={<Write />} />
-          <Route path="/detail/:id" element={<Detail />} />
-        </Routes>
-      </article>
-    </HashRouter>
-  </React.StrictMode>
+  <HashRouter>
+    <Header />
+    <main>
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/write" element={<Write />} />
+        <Route path="/detail/:id" element={<Detail />} />
+      </Routes>
+    </main>
+  </HashRouter>
 );

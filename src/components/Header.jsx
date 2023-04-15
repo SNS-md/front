@@ -47,7 +47,7 @@ function Header() {
           <img src={process.env.PUBLIC_URL + "/title_italic.png"} alt="SNS.md"/>
         </Link>
         <Link to="/write">
-          <WriteButton><span class="material-icons">create</span></WriteButton>
+          <WriteButton><span className="material-icons">create</span></WriteButton>
         </Link>
       </HeaderContainer>
     </StyledHeader>
