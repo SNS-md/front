@@ -5,7 +5,7 @@ import Header from './components/Header';
 import Main from './page/Main';
 import Write from './page/Write';
 import Detail from './page/Detail';
-import {HashRouter,Router,Routes} from 'react-router-dom';
+import {HashRouter,Route,Routes} from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
