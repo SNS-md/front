@@ -5,8 +5,8 @@ import Post from '../components/Post';
 function Main() {
   const [posts, setPosts] = useState([]);
   const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(false);
-  let isLoading = false;
+  const [loading, setLoading] = useState(true);
+  let isLoading = true;
 
   const getPosts = async () => {
     // const response = await fetch(`/readPost/?page=${page}`);
