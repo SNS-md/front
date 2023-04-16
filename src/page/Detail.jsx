@@ -20,7 +20,7 @@ function Detail() {
   return (
     <>
       <Post post={post}/>
-      <WriteComment setPost={setPost}/>
+      <WriteComment setPost={setPost} id={id}/>
     </>
   );
 }

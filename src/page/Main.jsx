@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import Loading from '../components/Loading';
 import Post from '../components/Post';
 import { getPostList } from '../utils/testApi';

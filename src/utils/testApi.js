@@ -1,14 +1,24 @@
 import { newName } from './name';
 
 const mockPostList = [
-    { id: 1, name: newName(), date: new Date().toISOString(), contents: 'test1', likes: 0, comments: [{name: newName(),date: new Date().toISOString(), contents:"comment1"}] },
+    { id: 1, name: newName(), date: new Date().toISOString(), contents: "# title1\n"+
+    "## title2\n"+
+    "* list1\n"+
+    "* list2\n"+
+    "  * list3\n"+
+    "1. list3\n"+
+    "2. list4\n"+
+    "```javascript\n"+
+    "const a = 1;\n"+
+    "```\n"+
+    "> 인용구\n\n"+
+    "그냥 일반 텍스트", likes: 0, comments: [{name: newName(),date: new Date().toISOString(), contents:"comment1"}] },
     { id: 2, name: newName(), date: new Date().toISOString(), contents: 'test2', likes: 0, comments: [] },
 ];
 
 const delayResponse = (response) => new Promise(resolve => setTimeout(() => resolve(response), 1000));
 
 export const getPostList = async (page, sortBy) => {
-    console.log(page, sortBy);
     const response = mockPostList
         .slice((page - 1) * 10, page * 10)
         .map(e => ({ ...e, comment: e.comments[e.comments.length - 1] }))
