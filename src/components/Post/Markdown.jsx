@@ -2,6 +2,11 @@ import styled from "styled-components";
 import ReactMarkdown from "react-markdown";
 
 const MarkdownWrapper = styled.div`
+    background-color: #eee;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+
     h1{
         font-size: 1.5rem;
         line-height: 1.5rem;

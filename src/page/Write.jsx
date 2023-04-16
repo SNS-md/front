@@ -1,9 +1,9 @@
 function Write() {
-    return (
-      <div>
-        write
-      </div>
-    );
-  }
+  return (
+    <div>
+      write
+    </div>
+  );
+}
   
 export default Write;
