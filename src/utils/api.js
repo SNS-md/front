@@ -1,20 +1,25 @@
 import axios from 'axios';
 
+class ResponseError extends Error {
+    constructor(status,message) {
+        super(message);
+        this.name = 'ResponseError';
+        this.status = status;
+    }
+}
+
 const createAxiosRequest = method => async (...params) => {
     try {
         const response = await axios[method](...params);
         return response.data;
     } catch (error) {
         if (error.response)
-            return error.response.data;
-        return null;
+            throw new ResponseError(error.response.status,error.response.data.message);
+        throw new Error(error.message);
     }
 };
 
-const get = createAxiosRequest('get');
-const post = createAxiosRequest('post');
-const put = createAxiosRequest('put');
-const del = createAxiosRequest('delete');
+const [ get, post, put, del ] = ['get','post','put','delete'].map(createAxiosRequest);
 
 export const getPostList = async (page,sortBy)=> get(`/api/posts?page=${page}&sortby=${sortBy}`);
 export const getPost = async (id)=> get(`/api/posts/${id}`);

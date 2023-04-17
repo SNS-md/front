@@ -11,8 +11,12 @@ function Detail() {
 
   useEffect(() => {
     (async () =>{
-      const data = await getPost(id);
-      setPost(data);
+      try{
+        const data = await getPost(id);
+        setPost(data);
+      }catch(e){
+        alert("게시물을 불러오는데 실패했습니다.");
+      }
     })();
   }, []);
 

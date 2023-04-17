@@ -61,10 +61,15 @@ a{
   color: inherit;
 }
 
+#root{
+  height: 100%;
+}
+
 main{
   display: block;
   width: calc(100% - 40px);
   max-width: 1160px;
+  min-height: calc(100% - 100px);
   margin: 0 auto;
   padding: 20px;
 }
