@@ -1,7 +1,12 @@
 import styled from "styled-components";
 import ReactMarkdown from "react-markdown";
 
-const MarkdownWrapper = styled.div`
+const MarkdownWrapper = styled.section`
+    background-color: #eee;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+
     h1{
         font-size: 1.5rem;
         line-height: 1.5rem;
@@ -32,6 +37,10 @@ const MarkdownWrapper = styled.div`
     li::marker{
         font-size: 0.8rem;
     }
+    *:not(pre)>code{
+        background-color: var(--main-color100);
+        padding: 3px;
+    }
     pre{
         background-color: var(--main-color900);
         color: #fff;
@@ -48,6 +57,10 @@ const MarkdownWrapper = styled.div`
       margin: 10px 0 10px 1em;
       border-left: 5px solid var(--main-color900);
       border-radius: 0 5px 5px 0;
+    }
+    a{
+        color: var(--main-colorA700);
+        text-decoration: underline;
     }
 `;
 

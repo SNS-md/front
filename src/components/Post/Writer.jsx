@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import name2profile from "../../utils/name2profile";
+import { name2profile } from "../../utils/name";
 
 const PostHeaderSection = styled.section`
   display: flex;

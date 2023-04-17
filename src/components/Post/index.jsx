@@ -13,18 +13,29 @@ const PostWrapper = styled.article`
   }
 `;
 
-function Post({ post, isDetail = false }) {
-  if (!isDetail)
+function Post({ post }) {
+  const isDetail = post.comments ? true : false;
+  if (isDetail)
     return (
-      <Link to={`/detail/${post.id}`}>
-        <PostWrapper>
-          <Writer name={post.name} date={post.date}/>
-          <Markdown contents={post.contents} />
-          <hr />
-          <Comment comment={post.comment} />
-        </PostWrapper>
-      </Link>
+      <>
+        <Writer name={post.name} date={post.date}/>
+        <Markdown contents={post.contents} />
+        <hr />
+        {post.comments.map((comment, i) => (
+          <Comment key={i} comment={comment} />
+        ))}
+      </>
     );
+  return (
+    <Link to={`/detail/${post.id}`}>
+      <PostWrapper>
+        <Writer name={post.name} date={post.date}/>
+        <Markdown contents={post.contents} />
+        <hr />
+        {post.comment&&<Comment comment={post.comment} />}
+      </PostWrapper>
+    </Link>
+  );
 
 }
 

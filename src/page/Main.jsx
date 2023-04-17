@@ -1,99 +1,61 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Loading from '../components/Loading';
 import Post from '../components/Post';
+import { getPostList } from '../utils/testApi';
 
 function Main() {
   const [posts, setPosts] = useState([]);
-  const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(true);
-  let isLoading = true;
+  const page = useRef(1);
+  const [sortBy, setSortBy] = useState('id');
+  const [loading, setLoading] = useState(false);
+  const [isEnd, setIsEnd] = useState(false);
+
+  const handleScroll = (e) => {
+    const { scrollTop, clientHeight, scrollHeight } = e.target.documentElement;
+    if (scrollTop + clientHeight === scrollHeight)
+      setLoading(true);
+  };
 
   const getPosts = async () => {
-    // const response = await fetch(`/readPost/?page=${page}`);
-    // const data = await response.json();
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    const data = [
-      {
-        contents: "# title1\n"+
-        "## title2\n"+
-        "* list1\n"+
-        "* list2\n"+
-        "  * list3\n"+
-        "1. list3\n"+
-        "2. list4\n"+
-        "```javascript\n"+
-        "const a = 1;\n"+
-        "```\n",
-        comment: {
-          name: '활발한 토끼',
-          content: 'comment1',
-          date: '2021-08-01'
-        },
-        name: '예쁜 고양이',
-        date: '2021-08-01',
-        like: 20,
-        id: 1
-      },
-      {
-        contents: "# 제목 예시입니다\n"+
-        '> content2\n'+
-        'content3\n'+
-        "```javascript\n"+
-        "const a = 1;\n"+
-        "```\n",
-        comment: {
-          name: '파릇파릇한 뱀',
-          content: 'comment1',
-          date: '2021-08-02'
-        },
-        name: '쓸쓸한 낙타',
-        date: '2021-08-02',
-        like: 10,
-        id: 2
-      },{
-        contents: '> content2',
-        comment: {
-          name: '파릇파릇한 뱀',
-          content: 'comment1',
-          date: '2021-08-02'
-        },
-        name: '쓸쓸한 낙타',
-        date: '2021-08-02',
-        like: 10,
-        id: 3
-      }];
-    setPosts(posts=>[...posts, ...data]);
-    setPage(page + 1);
-    setLoading(false);
-    isLoading = false;
-  };
-  
-  const handleScroll = (e) => {
-    if (isLoading) return;
-    const { scrollTop, clientHeight, scrollHeight } = e.target.documentElement;
-    if (scrollTop + clientHeight == scrollHeight){
-      isLoading = true;
-      setLoading(true);
-      getPosts();
+    try {
+      const data = await getPostList(page.current, sortBy);
+      if (data.length === 0) {
+        setIsEnd(true);
+        setLoading(false);
+        return;
+      }
+      setPosts(posts => [...posts, ...data]);
+      page.current++;
+      setLoading(false);
+    } catch (e) {
+      alert('게시물을 불러오는데 실패했습니다.');
     }
   };
 
   useEffect(() => {
-    getPosts();
-    window.addEventListener('scroll', handleScroll);
+    if (loading)
+      getPosts();
+  }, [loading]);
+
+  useEffect(() => {
+    if (!isEnd) {
+      setLoading(true);
+      window.addEventListener('scroll', handleScroll);
+    }
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [isEnd]);
 
   return (
-    <div>
-      {posts.map((post,i) => (
+    <>
+      {posts.map((post, i) => (
         <Post key={i} post={post} />
       ))}
       {loading && <Loading />}
-    </div>
+      {isEnd && <div>모든 게시물을 불러왔습니다.</div>}
+    </>
   );
 }
 
