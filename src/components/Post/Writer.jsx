@@ -22,7 +22,7 @@ function PostHeader({ name, date }) {
     const [color, icon] = name2profile(name);
     return (
         <PostHeaderSection>
-            <ProfileImg color={color}>{icon}</ProfileImg>
+            <ProfileImg color={color}><img src={require(`../../assets/${icon}.png`)} width = "23px" alt={name}/></ProfileImg>
             <b>{name}</b>
             <span style={{color:"#666"}}>·</span>
             <span style={{color:"#666"}}>{date}</span>
