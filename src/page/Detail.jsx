@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import Post from '../components/Post';
 import Loading from '../components/Loading';
 import WriteComment from '../components/WriteComment';
-import {getPost} from '../utils/testApi';
+import {getPost} from '../utils/api';
 
 function Detail() {
   const id = Number(useParams().id);

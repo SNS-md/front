@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { writePost } from '../utils/testApi';
+import { writePost } from '../utils/api';
 import { useNavigate } from 'react-router-dom';
 import PostEditor from '../components/PostEditor';
 import EditorContiner from '../components/EditorContiner';
@@ -16,8 +16,8 @@ function Write() {
 
   const onClick = async () => {
     try{
-      const id = await writePost(contents);
-      navigate("/detail/"+id);
+      const response = await writePost(contents);
+      navigate("/detail/"+response.id);
     }catch(e){
       alert("게시물 작성에 실패했습니다.");
     }

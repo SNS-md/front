@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import { useRef } from "react";
-import { writeComment } from "../utils/testApi";
+import { writeComment } from "../utils/api";
 
 function WriteComment({id, setPost}) {
     const comment = useRef();
     const onClick = async () => {
-        const result = await writeComment(id, comment.current.value);
-        setPost(result);
+        await writeComment(id, comment.current.value);
+        window.location.reload();
     }        
 
     return (
