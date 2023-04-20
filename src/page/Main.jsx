@@ -54,7 +54,7 @@ function Main() {
         <Post key={i} post={post} />
       ))}
       {loading && <Loading />}
-      {isEnd && <div>모든 게시물을 불러왔습니다.</div>}
+      {isEnd && <div className="card"><div className="card-body text-center"><h5>모든 게시물을 불러왔습니다.</h5></div></div>}
     </>
   );
 }
