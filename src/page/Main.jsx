@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Loading from '../components/Loading';
 import Post from '../components/Post';
-import { getPostList } from '../utils/testApi';
+import { getPostList } from '../utils/api';
 
 function Main() {
   const [posts, setPosts] = useState([]);
