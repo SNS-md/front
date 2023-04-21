@@ -62,6 +62,11 @@ const MarkdownWrapper = styled.section`
         color: var(--main-colorA700);
         text-decoration: underline;
     }
+
+    @media (max-width: 600px) {
+        width: 100%;
+        height: 100%;
+    }
 `;
 
 export default function Markdown({ contents }) {

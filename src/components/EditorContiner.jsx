@@ -11,6 +11,10 @@ const EditorContiner = styled.article`
   >*{
     flex: 1 1 0px;
   }
+
+  @media (max-width: 600px) {
+    display: block;
+  }
 `;
 
 export default EditorContiner;
