@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { writePost } from '../utils/api';
 import { useNavigate } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
@@ -30,6 +30,13 @@ function Write() {
   const navigate = useNavigate();
   const [key, setKey] = useState('write');
 
+  const [cursor, setCursor] = useState(0); //탭 입력 후 커서의 위치
+  const taRef = useRef(); // textarea에 ref 연결
+
+  useEffect(() => {
+    taRef.current.setSelectionRange(cursor, cursor);
+  }, [cursor]);
+
   const onChange = (e) => {
     setContents(e.target.value);
   }
@@ -44,10 +51,14 @@ function Write() {
   }
 
   const onKeyDown = e => {
-    if (e.key === 'Tab') {  
+    if (e.keyCode === 9) {  
       e.preventDefault();
-      setContents(contents + '\t');
-      e.target.value += '\t';
+      let value = e.target.value,
+        start = e.target.selectionStart,
+        end = e.target.selectionEnd;
+      setContents(value.substring(0, start) + "\t" + value.substring(end));
+      setCursor(start + 1);
+      e.target.value = value.substring(0, start) + "  " + value.substring(end);
     }
   }
 
@@ -55,7 +66,7 @@ function Write() {
     <>
       <EditorContiner>
         <PC>
-          <PostEditor onChange={onChange} onKeyDown={onKeyDown} placeholder={markdownGuide} />
+          <PostEditor onChange={onChange} onKeyDown={onKeyDown} ref={taRef} placeholder={markdownGuide} />
           <Markdown contents={contents} />
         </PC>
         <Mobile>
