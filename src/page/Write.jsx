@@ -43,11 +43,19 @@ function Write() {
     }
   }
 
+  const onKeyDown = e => {
+    if (e.key === 'Tab') {  
+      e.preventDefault();
+      setContents(contents + '\t');
+      e.target.value += '\t';
+    }
+  }
+
   return (
     <>
       <EditorContiner>
         <PC>
-          <PostEditor onChange={onChange} placeholder={markdownGuide} />
+          <PostEditor onChange={onChange} onKeyDown={onKeyDown} placeholder={markdownGuide} />
           <Markdown contents={contents} />
         </PC>
         <Mobile>
