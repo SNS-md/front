@@ -10,9 +10,11 @@ function WriteComment({id, setPost}) {
     }        
 
     return (
-        <div style={{marginBottom:"10px"}}>
-            <input type="text" placeholder="댓글을 입력하세요" style={{width:"300px"}} ref={comment}/>
-            <button style={{marginLeft:"10px"}} onClick={onClick}>등록</button>
+        <div class="input-group mb-3">
+            <div class="col-sm-12">
+                <input type="text" class="form-control" style={{width: "30%", display:"inline-block"}} placeholder="댓글을 입력하세요" aria-describedby="button-addon" ref={comment}/>
+                <button class="btn btn-outline-secondary" type="button" id="button-addon" onClick={onClick}>등록</button>
+            </div>
         </div>
     );
 }
