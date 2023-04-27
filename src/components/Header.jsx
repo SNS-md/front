@@ -40,10 +40,12 @@ const WriteButton = styled.button`
 `;
 
 function Header() {
+
+
   return (
     <StyledHeader>
       <HeaderContainer>
-        <Link to="/">
+        <Link to="/" onClick={() => window.location.pathname==="/"&&window.location.reload()}>
           <img src={process.env.PUBLIC_URL + "/title_italic.png"} alt="SNS.md"/>
         </Link>
         <Link to="/write">
