@@ -1,25 +1,19 @@
-import styled from "styled-components";
+import PostWrapper from "./PostWrapper";
 import Markdown from "./Markdown";
 import Comment from "./Comment";
 import Writer from "./Writer";
+import Like from "./Like";
 import { Link } from "react-router-dom";
-
-const PostWrapper = styled.article`
-  border: 1px solid var(--main-color100);
-  margin: 10px;
-  padding: 10px;
-  :hover {
-    box-shadow: 2px 2px 4px var(--main-color100);
-  }
-`;
 
 function Post({ post }) {
   const isDetail = post.comments ? true : false;
+
   if (isDetail)
     return (
       <>
-        <Writer name={post.name} date={post.date}/>
+        <Writer name={post.name} date={post.date} />
         <Markdown contents={post.contents} />
+        <Like like={post.likes} id={post.id}/>
         <hr />
         {post.comments.map((comment, i) => (
           <Comment key={i} comment={comment} />
@@ -27,14 +21,19 @@ function Post({ post }) {
       </>
     );
   return (
-    <Link to={`/detail/${post.id}`}>
+    <>
       <PostWrapper>
-        <Writer name={post.name} date={post.date}/>
-        <Markdown contents={post.contents} />
-        <hr />
-        {post.comment&&<Comment comment={post.comment} />}
+        <Link to={`/detail/${post.id}`}>
+          <Writer name={post.name} date={post.date} />
+          <Markdown contents={post.contents} />
+        </Link>
+        <Like like={post.likes} id={post.id}/>
+        <Link to={`/detail/${post.id}`}>
+          <hr />
+          {post.comment && <Comment comment={post.comment} />}
+        </Link>
       </PostWrapper>
-    </Link>
+    </>
   );
 
 }

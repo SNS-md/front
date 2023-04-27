@@ -9,8 +9,8 @@ const PostHeaderSection = styled.section`
 `;
 
 const ProfileImg = styled.div`
-    width: 30px;
-    height: 30px;
+    width: ${props=>props.isComment?"25px":"30px"};
+    height: ${props=>props.isComment?"25px":"30px"};
     border-radius: 50%;
     background-color: ${props => props.color};
     display: flex;
@@ -18,12 +18,12 @@ const ProfileImg = styled.div`
     align-items: center;
 `;
 
-function PostHeader({ name, date }) {
+function PostHeader({ name, date, isComment }) {
     const [color, icon] = name2profile(name);
     return (
         <PostHeaderSection>
-            <ProfileImg color={color}><img src={require(`../../assets/${icon}.png`)} width = "23px" alt={name}/></ProfileImg>
-            <b>{name}</b>
+            <ProfileImg color={color} isComment={isComment}><img src={require(`../../assets/${icon}.png`)} width ={isComment?"18px":"23px"} alt={name}/></ProfileImg>
+            <b style={isComment&&{fontSize:"0.9rem"}}>{name}</b>
             <span style={{color:"#666"}}>·</span>
             <span style={{color:"#666"}}>{date}</span>
         </PostHeaderSection>
