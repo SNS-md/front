@@ -9,11 +9,10 @@ const PostEditor = styled.textarea`
   border-radius: 5px;
   margin: 10px 0;
   border: 1px solid var(--main-color100);
-  box-shadow: 0 0 5px var(--main-color100);
 
   @media (max-width: 600px) {
     width: 100%;
-    height: 600px;
+    min-height: 600px;
   }
 `;
 

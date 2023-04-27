@@ -30,7 +30,7 @@ function Post({ post }) {
         <Like like={post.likes} id={post.id}/>
         <Link to={`/detail/${post.id}`}>
           <hr />
-          {post.comment && <Comment comment={post.comment} />}
+          {post.comment ? <Comment comment={post.comment} /> : <div style={{marginLeft:"20px"}}>첫 번째 댓글을 달아보세요!</div>}
         </Link>
       </PostWrapper>
     </>

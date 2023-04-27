@@ -1,91 +1,65 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { writePost } from '../utils/api';
 import { useNavigate } from 'react-router-dom';
-import { useMediaQuery } from 'react-responsive';
 import PostEditor from '../components/PostEditor';
 import EditorContiner from '../components/EditorContiner';
 import Markdown from '../components/Post/Markdown';
 import markdownGuide from '../utils/markdownGuide';
-import Tab from 'react-bootstrap/Tab';
-import Tabs from 'react-bootstrap/Tabs';
-
-const Mobile = ({ children }) => {
-  const isMobile = useMediaQuery({
-    query: "(max-width:600px)"
-  });
-
-  return <>{isMobile && children}</>
-}
-
-const PC = ({ children }) => {
-  const isPc = useMediaQuery({
-    query: "(min-width:601px)"
-  });
-
-  return <>{isPc && children}</>
-}
+import PostWrapper from '../components/Post/PostWrapper';
+import Tab from '../components/Tab';
+import Button from '../components/Button';
+import Loading from '../components/Loading';
 
 function Write() {
-  const [contents, setContents] = useState('');
+  const [contents, setContents] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [tab, setTab] = useState("editor");
   const navigate = useNavigate();
-  const [key, setKey] = useState('write');
 
-  const [cursor, setCursor] = useState(0); //탭 입력 후 커서의 위치
   const taRef = useRef(); // textarea에 ref 연결
-
-  useEffect(() => {
-    taRef.current.setSelectionRange(cursor, cursor);
-  }, [cursor]);
 
   const onChange = (e) => {
     setContents(e.target.value);
+    e.target.style.height = "auto";
+    e.target.style.height = (e.target.scrollHeight + 8) + "px";
   }
 
   const onClick = async () => {
+    setIsLoading(true);
     try {
       const response = await writePost(contents);
       navigate("/detail/" + response.id);
     } catch (e) {
       alert("게시물 작성에 실패했습니다.");
+    } finally {
+      setIsLoading(false);
     }
   }
 
   const onKeyDown = e => {
-    if (e.keyCode === 9) {  
-      e.preventDefault();
-      let value = e.target.value,
-        start = e.target.selectionStart,
-        end = e.target.selectionEnd;
-      setContents(value.substring(0, start) + "\t" + value.substring(end));
-      setCursor(start + 1);
-      e.target.value = value.substring(0, start) + "  " + value.substring(end);
-    }
+    if (e.keyCode !== 9)
+      return;
+    e.preventDefault();
+    const value = e.target.value;
+    const start = e.target.selectionStart;
+    const end = e.target.selectionEnd;
+    e.target.value = value.substring(0, start) + "    " + value.substring(end);
+    onChange(e);
+    taRef.current.setSelectionRange(start+4, start+4);
   }
 
   return (
     <>
-      <EditorContiner>
-        <PC>
+      <Tab tabs={[{type:"editor",title:"작성하기"},{type:"preview",title:"미리보기"}]} tab={tab} setTab={setTab} />
+      <EditorContiner className={tab}>
           <PostEditor onChange={onChange} onKeyDown={onKeyDown} ref={taRef} placeholder={markdownGuide} />
-          <Markdown contents={contents} />
-        </PC>
-        <Mobile>
-          <Tabs
-            id="controlled-tab-example"
-            activeKey={key}
-            onSelect={(k) => setKey(k)}
-            className="mb-3"
-          >
-            <Tab eventKey="write" title="Write">
-              <PostEditor onChange={onChange} placeholder={markdownGuide} />
-            </Tab>
-            <Tab eventKey="profile" title="Preview">
-              <Markdown contents={contents} />
-            </Tab>
-          </Tabs>
-        </Mobile>
+          <PostWrapper>
+            <Markdown contents={contents} />
+          </PostWrapper>
       </EditorContiner>
-      <button onClick={onClick}>작성</button>
+      <Button onClick={onClick} disabled={isLoading||contents.length<6}>
+        {isLoading?<Loading size="23px"/>:"작성"}
+      </Button>
     </>
   );
 }

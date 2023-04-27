@@ -14,6 +14,22 @@ const EditorContiner = styled.article`
 
   @media (max-width: 600px) {
     display: block;
+    &.editor{
+      >textarea{
+        display: block;
+      }
+      >article{
+        display: none;
+      }
+    }
+    &.preview{
+      >textarea{
+        display: none;
+      }
+      >article{
+        display: block;
+      }
+    }
   }
 `;
 
