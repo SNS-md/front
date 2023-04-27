@@ -6,11 +6,11 @@ import Main from './page/Main';
 import Write from './page/Write';
 import Detail from './page/Detail';
 import NotFound from './page/NotFound';
-import {HashRouter,Route,Routes} from 'react-router-dom';
+import {BrowserRouter,Route,Routes} from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <HashRouter>
+  <BrowserRouter>
     <Header/>
     <main>
       <Routes>
@@ -20,5 +20,5 @@ root.render(
         <Route path="*" element={<NotFound/>} />
       </Routes>
     </main>
-  </HashRouter>
+  </BrowserRouter>
 );

@@ -22,7 +22,7 @@ function PostHeader({ name, date, isComment }) {
     const [color, icon] = name2profile(name);
     return (
         <PostHeaderSection>
-            <ProfileImg color={color} isComment={isComment}><img src={require(`../../assets/${icon}.png`)} width ={isComment?"18px":"23px"} alt={name}/></ProfileImg>
+            <ProfileImg color={color} isComment={isComment}><img src={`${process.env.PUBLIC_URL}/assets/${icon}.png`} width ={isComment?"18px":"23px"} alt={name}/></ProfileImg>
             <b style={isComment&&{fontSize:"0.9rem"}}>{name}</b>
             <span style={{color:"#666"}}>·</span>
             <span style={{color:"#666"}}>{date}</span>
