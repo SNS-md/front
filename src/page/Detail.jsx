@@ -15,7 +15,8 @@ function Detail() {
         const data = await getPost(id);
         setPost(data);
       }catch(e){
-        alert("게시물을 불러오는데 실패했습니다.");
+        // eslint-disable-next-line no-restricted-globals
+        location.replace("/#/404");
       }
     })();
   }, []);

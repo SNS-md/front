@@ -5,6 +5,7 @@ import Header from './components/Header';
 import Main from './page/Main';
 import Write from './page/Write';
 import Detail from './page/Detail';
+import NotFound from './page/NotFound';
 import {HashRouter,Route,Routes} from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -16,6 +17,7 @@ root.render(
         <Route path="/" element={<Main />} />
         <Route path="/write" element={<Write />} />
         <Route path="/detail/:id" element={<Detail />} />
+        <Route path="*" element={<NotFound/>} />
       </Routes>
     </main>
   </HashRouter>
