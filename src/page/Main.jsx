@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import Loading from '../components/Loading';
+import PostWrapper from '../components/Post/PostWrapper';
 import Post from '../components/Post';
 import { getPostList } from '../utils/api';
 
@@ -53,7 +54,7 @@ function Main() {
       {posts.map((post, i) => (
         <Post key={i} post={post} />
       ))}
-      {loading && <Loading />}
+      {loading && <PostWrapper><Loading /></PostWrapper>}
       {isEnd && <div className="card"><div className="card-body text-center"><h5>모든 게시물을 불러왔습니다.</h5></div></div>}
     </>
   );

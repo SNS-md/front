@@ -2,11 +2,10 @@ import styled from "styled-components";
 import ReactMarkdown from "react-markdown";
 
 const MarkdownWrapper = styled.section`
-    background-color: #eee;
+    background-color: #fff;
     padding: 10px;
     border-radius: 5px;
     margin: 10px 0;
-
     h1{
         font-size: 1.5rem;
         line-height: 1.5rem;
@@ -40,10 +39,11 @@ const MarkdownWrapper = styled.section`
     *:not(pre)>code{
         background-color: var(--main-color100);
         padding: 3px;
+        color: #000;
     }
     pre{
-        background-color: var(--main-color900);
-        color: #fff;
+        background-color: #f9f3fa;
+        color: #000;
         padding: 10px;
         border-radius: 5px;
     }
