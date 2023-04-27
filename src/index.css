@@ -72,3 +72,7 @@ main{
   min-height: calc(100% - 100px);
   margin: 10px auto 0;
 }
+
+.material-icons{
+  user-select: none;
+}
