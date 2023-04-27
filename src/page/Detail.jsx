@@ -16,7 +16,7 @@ function Detail() {
         setPost(data);
       }catch(e){
         // eslint-disable-next-line no-restricted-globals
-        location.replace("/#/404");
+        location.replace("/404");
       }
     })();
   }, []);
