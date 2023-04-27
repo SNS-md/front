@@ -10,7 +10,7 @@ import {HashRouter,Route,Routes} from 'react-router-dom';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <HashRouter>
-    <Header />
+    <Header/>
     <main>
       <Routes>
         <Route path="/" element={<Main />} />

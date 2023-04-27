@@ -3,6 +3,7 @@ import Loading from '../components/Loading';
 import PostWrapper from '../components/Post/PostWrapper';
 import Post from '../components/Post';
 import { getPostList } from '../utils/api';
+import ToggleButton from '../components/ToggleButton';
 
 function Main() {
   const [posts, setPosts] = useState([]);
@@ -49,8 +50,20 @@ function Main() {
     };
   }, [isEnd]);
 
+  const toggleSortBy = (sortBy) => () => {
+    setSortBy(sortBy);
+    setPosts([]);
+    page.current = 1;
+    setIsEnd(false);
+    setLoading(true);
+  }
+
   return (
     <>
+      <div style={{textAlign:"right",marginRight:"15px"}}>
+        <ToggleButton disabled={sortBy === 'id'} onClick={toggleSortBy("id")} style={{borderRadius:"5px 0 0 5px"}}>최신순</ToggleButton>
+        <ToggleButton disabled={sortBy === 'like'} onClick={toggleSortBy("like")} style={{borderRadius:"0 5px 5px 0"}}>인기순</ToggleButton>
+      </div>
       {posts.map((post, i) => (
         <Post key={i} post={post} />
       ))}

@@ -57,7 +57,7 @@ function Write() {
             <Markdown contents={contents} />
           </PostWrapper>
       </EditorContiner>
-      <Button onClick={onClick} disabled={isLoading||contents.length<6}>
+      <Button onClick={onClick} disabled={isLoading||contents.length<6} bold={true}>
         {isLoading?<Loading size="23px"/>:"작성"}
       </Button>
     </>
